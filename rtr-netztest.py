@@ -7,7 +7,7 @@ from selenium.common.exceptions import TimeoutException
 import os,datetime,csv
 import pickle
 
-browser = webdriver.Edge(r"C:\\<path-to>\\msedgedriver.exe")
+browser = webdriver.Edge(os.path.join(os.path.dirname(__file__),"msedgedriver.exe"))
 
 try:
     try:
