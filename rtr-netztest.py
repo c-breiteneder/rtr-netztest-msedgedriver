@@ -1,4 +1,4 @@
-from selenium import webdriver
+from msedge.selenium_tools import Edge, EdgeOptions
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,7 +7,12 @@ from selenium.common.exceptions import TimeoutException
 import os,datetime,csv
 import pickle
 
-browser = webdriver.Edge(os.path.join(os.path.dirname(__file__),"msedgedriver.exe"))
+driverOptions = EdgeOptions()
+driverOptions.use_chromium = True
+driverOptions.binary_location = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+driverOptions.add_argument("--headless")
+driverOptions.add_experimental_option("excludeSwitches", ["enable-logging"])
+browser = Edge(options=driverOptions)
 
 try:
     try:
@@ -59,4 +64,5 @@ try:
         print (browser.current_url)
 
 finally:
+    browser.close()
     browser.quit()
